@@ -1,9 +1,28 @@
 import os
-jugadores = ["Fran", "Elena", "Elias", "Noche"]
-roles = ["policía", "mafia", "médico", "civil"]
+jugadores = []
+roles = ["Policía", "Mafia", "Médico", "Civil"]
 muerto = ""
 
 roleplayers = {}
+
+cant_jugadores = int(input("Ingrese la cantidad de jugadores que participarán: "))
+
+while cant_jugadores < 4:
+    print("Recomendamos que hayan al menos cuatro jugadores en la partida.")
+    cambiar_num = int(input("¿Quiere cambiar la cantidad de jugadores?: 0 - NO / 1 - SI: "))
+    if cambiar_num == 1:
+        cant_jugadores = int(input("Ingrese la cantidad de jugadores que participarán: "))
+    else:
+        print("Se asumirá que la cantidad de jugadores son 4 para cumplir el cupo mínimo de jugadores.")
+        input("Presione ENTER para continuar: ")
+        cant_jugadores = 4
+
+os.system('cls')
+
+for num in range(0, cant_jugadores):
+    actual_num = str(num+1)
+    jugador = input(f"Ingrese el nombre del participante n° " + actual_num + ": ")
+    jugadores.append(jugador)
 
 for j in jugadores:
     numRol = int(input(f"QUE ROL ES " + j + ": "))
@@ -13,7 +32,7 @@ for j in jugadores:
 
 pol_respuesta = int(input("Policía, a quién desea investigar: "))
 
-mafia = roleplayers[jugadores[pol_respuesta]] == "mafia"
+mafia = roleplayers[jugadores[pol_respuesta]] == "Mafia"
 
 if mafia:
     print("SÍ, ES MAFIA")
